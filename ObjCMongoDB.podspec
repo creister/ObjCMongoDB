@@ -14,7 +14,8 @@ Pod::Spec.new do |s|
   s.license      = 'Apache'
   s.author       = { "Paul Melnikow" => "github@paulmelnikow.com" }
   s.source       = { :git => 'https://github.com/paulmelnikow/ObjCMongoDB.git',
-                     :tag => "v#{s.version}" }
+                     :tag => "v#{s.version}",
+                     :submodules => true }
   
   s.ios.deployment_target = '5.0'
   s.osx.deployment_target = '10.6'
@@ -24,6 +25,7 @@ Pod::Spec.new do |s|
     sp.source_files = 'BSON'
     sp.private_header_files = 'BSON/BSON_Helper.h', 'BSON/BSON_PrivateInterfaces.h'
     sp.dependency 'ObjCMongoDB/OrderedDictionary', "~> #{s.version}"
+    sp.dependency 'ObjCMongoDB/mongo-c-driver'
   end
 
   s.subspec 'Mongo' do |sp|
@@ -37,5 +39,9 @@ Pod::Spec.new do |s|
     sp.source_files = 'OrderedDictionary'
   end
 
-  s.dependency 'mongo-c-driver', '~> 0.8.1'
+  s.subspec 'mongo-c-driver' do |sp|
+    sp.source_files = 'mongo-c-driver/src'
+    sp.public_header_files = "mongo-c-driver/src/*.h"
+  end
+
 end
