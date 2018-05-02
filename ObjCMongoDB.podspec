@@ -35,8 +35,6 @@ Pod::Spec.new do |s|
 
   s.subspec 'OrderedDictionary' do |sp|
     sp.source_files = 'OrderedDictionary'
-    sp.license      = { :type => 'MIT',
-                        :file => 'OrderedDictionary/OrderedDictionary.h' }
   end
 
   s.dependency 'mongo-c-driver', '~> 0.8.1'
